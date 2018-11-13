@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     Language: <select v-model='language'>
-      <option v-for='o in languageOptions' :key='o' :value='o'>{{o}}</option>
+      <option v-for='langOption in languageOptions' :key='langOption' :value='langOption'>{{langOption}}</option>
     </select>
     Theme: <select v-model='theme'>
-      <option v-for='o in themeOptions' :key='o' :value='o'>{{o}}</option>
+      <option v-for='themeOption in themeOptions' :key='themeOption' :value='themeOption'>{{themeOption}}</option>
     </select>
     <br/>
     <br/>
@@ -12,9 +12,8 @@
   </div>
 </template>
 
-<script>
-import MonacoEditor from '@/components/MonacoEditor.js'
-import dedent from 'dedent'
+<script lang="ts">
+import MonacoEditor from '@/components/MonacoEditor.vue'
 
 export default {
   name: 'app',
@@ -72,22 +71,8 @@ export default {
         'yaml',
       ],
       themeOptions: ['vs', 'vs-dark', 'hc-black'],
-      sampleCode: dedent`
-        import capitalize from './capitalize.js'
-        import words from './words.js'
-
-        /**
-         * Converts string to CamelCase.
-         */
-        const camelCase = (string) => (
-          words(\`\${string}\`.replace(/['\u2019]/g, '')).reduce((result, word, index) => {
-            word = word.toLowerCase()
-            return result + (index ? capitalize(word) : word)
-          }, '')
-        )
-
-        export default camelCase`,
-    }
+      sampleCode: '',
+    };
   },
 }
 </script>
